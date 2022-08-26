@@ -14,7 +14,6 @@ export default class ProductsController {
     return res.json(products);
   }
 
-  a
   public async show(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
 
