@@ -8,11 +8,11 @@ import uploadConfig from '@config/upload';
 
 interface IRequest {
   user_id: string;
-  avatarFileName: string;
+  avatarFilename: string;
 }
 
-export default class UpdateUserAvatarService {
-  public async execute({ user_id, avatarFileName }: IRequest): Promise<User> {
+class UpdateUserAvatarService {
+  public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
     const usersRepository = getCustomRepository(UserRepository);
 
     const user = await usersRepository.findById(user_id);
@@ -30,10 +30,12 @@ export default class UpdateUserAvatarService {
       }
     }
 
-    user.avatar = avatarFileName;
+    user.avatar = avatarFilename;
 
     await usersRepository.save(user);
 
     return user;
   }
 }
+
+export default UpdateUserAvatarService;
