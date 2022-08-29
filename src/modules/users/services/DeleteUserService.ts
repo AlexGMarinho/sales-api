@@ -1,12 +1,12 @@
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
-import { UserRepository } from '../typeorm/repositories/UsersRepository';
+import UserRepository from '../typeorm/repositories/UsersRepository';
 
 interface IRequest {
   id: string;
 }
 
-export default class DeleteUserService {
+class DeleteUserService {
   public async execute({ id }: IRequest): Promise<void> {
     const userRepository = getCustomRepository(UserRepository);
 
@@ -19,3 +19,5 @@ export default class DeleteUserService {
     await userRepository.remove(user);
   }
 }
+
+export default DeleteUserService;
