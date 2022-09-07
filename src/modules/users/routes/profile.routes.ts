@@ -11,21 +11,22 @@ profileRouter.use(isAuthenticated);
 profileRouter.get('/', profileControler.show);
 
 profileRouter.put(
-  '/avatar',
-  isAuthenticated,
-  upload.single('avatar'),
-  usersAvatarController.update,
-);
-
-profileRouter.delete(
-  '/:id',
-  isAuthenticated,
+  '/',
   celebrate({
-    [Segments.PARAMS]: {
-      id: Joi.string().uuid().required(),
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      old_password: Joi.string(),
+      password: Joi.string().optional(),
+      password_confirmation: Joi.string()
+        .valid(Joi.ref('password'))
+        .when('password', {
+          is: Joi.exist(),
+          then: Joi.required(),
+        }),
     },
   }),
-  usersController.delete,
+  profileControler.update,
 );
 
 export default profileRouter;
