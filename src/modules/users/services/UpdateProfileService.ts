@@ -30,7 +30,7 @@ export default class UpdateProfileService {
 
     const userUpdateEmail = await usersRepository.findByEmail(email);
 
-    if (userUpdateEmail && userUpdateEmail.id !== user_id) {
+    if (userUpdateEmail && user_id !== userUpdateEmail.id) {
       throw new AppError('There is already one user with this email.');
     }
 
