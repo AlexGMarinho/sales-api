@@ -6,7 +6,7 @@ interface IRequest {
   id: string;
 }
 
-export default class DeleteCustomerService {
+export class DeleteCustomerService {
   public async execute({ id }: IRequest): Promise<void> {
     const customersRepository = getCustomRepository(CustomersRepository);
 

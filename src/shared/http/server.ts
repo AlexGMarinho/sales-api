@@ -5,6 +5,7 @@ import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
 import '@shared/typeorm';
 import { errors } from 'celebrate';
+import { pagination } from 'typeorm-pagination';
 import cors from 'cors';
 import { routes } from './routes';
 
@@ -12,6 +13,9 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use(pagination);
+
 app.use('/files', express.static(uploadConfig.director));
 app.use(routes);
 
@@ -26,8 +30,6 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   }
 
   next();
-
-  console.log(error);
   return res.status(500).json({
     status: 'error',
     message: 'Internal server error',
