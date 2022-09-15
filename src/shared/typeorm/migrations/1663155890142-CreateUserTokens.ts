@@ -1,7 +1,8 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateUserTokens1661767988757 implements MigrationInterface {
+export class CreateUserTokens1663155890142 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
         name: 'user_tokens',
@@ -40,7 +41,7 @@ export class CreateUserTokens1661767988757 implements MigrationInterface {
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['user_id'],
-            onDelete: 'CASCADE', // Se apagar o usuario tbm apaga o token
+            onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
         ],

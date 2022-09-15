@@ -8,8 +8,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { OrdersProducts } from './OrdersProducts';
 import { Customer } from './../../../customers/typeorm/entities/Customer';
+import { OrdersProducts } from './OrdersProducts';
 
 @Entity('orders')
 export class Order {
