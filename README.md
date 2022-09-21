@@ -1,15 +1,15 @@
 ## Rodando a aplicação no seu PC
 
-Faça um clone deste repositório e instale no seu ambiente de desenvolvimento usando o seguinte comando no seu terminal (escolha um diretório apropriado):
+Make a clone of this repository and install it in your development environment using the following command in your terminal (choose an appropriate directory):
 
 ```
-git clone https://github.com/aluiziodeveloper/api-vendas.git
+git clone https://github.com/AlexGMarinho/sales-api.git
 ```
 
-Após clonar o conteúdo do repositório, acesse o diretório criado e efetue a instalação das dependências:
+After cloning the repository content, access the created directory and install the dependencies:
 
 ```
-cd api-vendas
+cd sales-api
 
 yarn
 
@@ -18,4 +18,4 @@ yarn
 npm install
 ```
 
-Após essa instalação execute a aplicação com o comando `yarn dev` ou `npm run dev`. O servidor estará em execução no endereço `http://localhost:3000`.
+After this installation run the application with the command `yarn dev` or `npm run dev`. The server will be running at address `http://localhost:3000`.
