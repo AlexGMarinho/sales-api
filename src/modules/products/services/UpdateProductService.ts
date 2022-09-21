@@ -1,3 +1,4 @@
+import { RedisCache } from '@shared/cache/RedisCache';
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import Product from '../typeorm/entities/Product';
@@ -10,7 +11,7 @@ interface IRequest {
   quantity: number;
 }
 
-class UpdateProductService {
+export class UpdateProductService {
   public async execute({
     id,
     name,
@@ -31,6 +32,10 @@ class UpdateProductService {
       throw new AppError('There is already a product with the name');
     }
 
+    const redisCache = new RedisCache();
+
+    await redisCache.invalidate('sales-api-PRODUCT_LIST');
+
     product.name = name;
     product.price = price;
     product.quantity = quantity;
@@ -40,5 +45,3 @@ class UpdateProductService {
     return product;
   }
 }
-
-export default UpdateProductService;
